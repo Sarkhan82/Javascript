@@ -134,3 +134,30 @@ var moyenne = function (notes) {
 var estMeilleur = function (a, b) {
   return moyenne(a.notes) < moyenne(b.notes);
 };
+
+// LES PROTOTYOPES
+
+var Eleve = function (nom, notes) {
+  if (notes != undefined) {
+    this.notes = notes;
+  }
+  this.nom = nom;
+};
+
+Eleve.moyenne = function () {
+  return 10;
+};
+
+Eleve.prototype.moyenne = function () {
+  if (this.notes === undefined) {
+    return NaN;
+  }
+  var somme = 0;
+  for (var i = 0; i < this.notes.length; i++) {
+    somme += this.notes[i];
+  }
+  return somme / this.notes.length;
+};
+
+var jean = new Eleve("Jean", [10, 15]);
+var marc = new Eleve("Marc");
